@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, share, withLatestFrom, filter } from 'rxjs/operators';
+import { map, withLatestFrom, filter, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class NavComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
-      share()
+      shareReplay(),
     );
 
   constructor(private breakpointObserver: BreakpointObserver, router: Router) {
