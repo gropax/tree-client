@@ -3,3 +3,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.filler {
+  flex: 1 1 auto;
+}
+
+/*.mat-typography h2 {
+  margin: 16px;
+}*/
