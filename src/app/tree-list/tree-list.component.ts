@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { TreeListDataSource, TreeListItem } from './tree-list-datasource';
+import { TreeListDataSource } from './tree-list-datasource';
+import { Tree, TreesService } from '../services/trees.service';
 
 @Component({
   selector: 'tree-list',
@@ -12,19 +13,26 @@ import { TreeListDataSource, TreeListItem } from './tree-list-datasource';
 export class TreeListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<TreeListItem>;
+  @ViewChild(MatTable, {static: false}) table: MatTable<Tree>;
+
   dataSource: TreeListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['guid', 'name', 'createdAt', 'updatedAt'];
+  displayedColumns = [/*'guid', */'name', 'createdAt', 'updatedAt'];
+
+  constructor(private treesService: TreesService) {}
 
   ngOnInit() {
-    this.dataSource = new TreeListDataSource();
+    this.dataSource = new TreeListDataSource(this.treesService);
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    this.dataSource.loadTrees();
+
+    this.paginator.page.subscribe(() => this.dataSource.loadTrees());
+    this.sort.sortChange.subscribe(() => this.dataSource.loadTrees());
   }
 }

@@ -1,94 +1,53 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Tree, TreesService, Pagination, QueryParams } from '../services/trees.service';
 
-// TODO: Replace this with your own data model type
-export interface TreeListItem {
-  guid: string;
-  name: string;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TreeListItem[] = [
-  { guid: "1231", name: 'My tree', description: "A very cool tree", createdAt: new Date(2017, 4, 4, 17, 23, 42, 11), updatedAt: new Date(2017, 4, 4, 17, 26, 41, 11) },
-];
 
 /**
  * Data source for the TreeList view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TreeListDataSource extends DataSource<TreeListItem> {
-  data: TreeListItem[] = EXAMPLE_DATA;
+export class TreeListDataSource extends DataSource<Tree> {
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  private treesSubject = new BehaviorSubject<Tree[]>([]);
+  private totalSubject = new BehaviorSubject<number>(0);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+
+  public total$ = this.totalSubject.asObservable();
+  public loading$ = this.loadingSubject.asObservable();
+
+  constructor(private treesService: TreesService) {
     super();
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<TreeListItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
-
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+  connect(): Observable<Tree[]> {
+    return this.treesSubject.asObservable();
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect() {}
-
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: TreeListItem[]) {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    return data.splice(startIndex, this.paginator.pageSize);
+  disconnect() {
+    this.treesSubject.complete();
+    this.totalSubject.complete();
+    this.loadingSubject.complete();
   }
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: TreeListItem[]) {
-    if (!this.sort.active || this.sort.direction === '') {
-      return data;
-    }
+  loadTrees() {
+    this.loadingSubject.next(true);
 
-    return data.sort((a, b) => {
-      const isAsc = this.sort.direction === 'asc';
-      switch (this.sort.active) {
-        case 'guid': return compare(a.guid, b.guid, isAsc);
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'createdAt': return compare(a.createdAt, b.createdAt, isAsc);
-        case 'updatedAt': return compare(a.updatedAt, b.updatedAt, isAsc);
-        default: return 0;
-      }
-    });
+    let params = new QueryParams(this.paginator.pageIndex, this.paginator.pageSize, this.sort.active, this.sort.direction);
+    this.treesService
+      .getTrees(params)
+      .pipe(
+        catchError(() => of(Pagination.empty<Tree>(params))),
+        finalize(() => this.loadingSubject.next(false)))
+      .subscribe(treePage => {
+        this.treesSubject.next(treePage.items);
+        this.totalSubject.next(treePage.count);
+      });
   }
-}
-
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a, b, isAsc) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
