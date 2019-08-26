@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -32,6 +33,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.component';
+import { TreeViewComponent } from './tree-view/tree-view.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,7 @@ import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.com
     NewTreePageComponent,
     TreeFormComponent,
     TreeDetailPageComponent,
+    TreeViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,13 +64,15 @@ import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.com
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatTabsModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
