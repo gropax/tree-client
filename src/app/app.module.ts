@@ -24,6 +24,7 @@ import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TreeListPageComponent } from './tree-list-page/tree-list-page.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
+import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TreeListComponent } from './tree-list/tree-list.component';
     PageNotFoundComponent,
     TreeListPageComponent,
     TimeAgoPipe,
+    NewTreePageComponent,
   ],
   imports: [
     BrowserModule,
