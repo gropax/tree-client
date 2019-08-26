@@ -1,1 +1,19 @@
+<mat-toolbar>
+  <span>New tree</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <!--<span class="filler"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
+      <mat-icon>add</mat-icon>
+      <span>Create tree</span>
+    </button>
+  </mat-menu>-->
+</mat-toolbar>
+
 <tree-form (cancel)="goTreeList()" (submited)="createTree($event)"></tree-form>
