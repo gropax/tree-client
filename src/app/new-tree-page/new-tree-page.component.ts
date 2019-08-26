@@ -16,7 +16,9 @@ export class NewTreePageComponent {
   }
 
   createTree(upsertTree: UpsertTree) {
-    //this.treeService.
-    console.log(upsertTree);
+    this.treeService.createTree(upsertTree)
+      .subscribe(
+        tree => this.router.navigate(['trees', tree.guid]),
+        error => console.log("Error!"));
   }
 }

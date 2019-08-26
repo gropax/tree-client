@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UpsertTree } from '../tree-form/tree-form.component';
 
 
 export class QueryParams {
@@ -44,9 +45,12 @@ export class TreesService {
 
   constructor(protected http: HttpClient) { }
 
-  public getTrees(params: QueryParams)
-    : Observable<Pagination<Tree>> {
+  public getTrees(params: QueryParams) : Observable<Pagination<Tree>> {
     return this.http.get<Pagination<Tree>>(
       `api/trees?page=${params.page}&pageSize=${params.pageSize}&sort=${params.sort}&sortDir=${params.sortDir}`);
+  }
+
+  public createTree(upsertTree: UpsertTree) : Observable<Tree> {
+    return this.http.post<Tree>('api/trees', upsertTree);
   }
 }
