@@ -31,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TimeAgoPipe,
     NewTreePageComponent,
     TreeFormComponent,
+    TreeDetailPageComponent,
   ],
   imports: [
     BrowserModule,

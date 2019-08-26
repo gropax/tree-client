@@ -50,6 +50,10 @@ export class TreesService {
       `api/trees?page=${params.page}&pageSize=${params.pageSize}&sort=${params.sort}&sortDir=${params.sortDir}`);
   }
 
+  public getTree(guid: string) : Observable<Tree> {
+    return this.http.get<Tree>(`api/trees/${guid}`);
+  }
+
   public createTree(upsertTree: UpsertTree) : Observable<Tree> {
     return this.http.post<Tree>('api/trees', upsertTree);
   }
