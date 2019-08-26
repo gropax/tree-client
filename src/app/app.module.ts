@@ -25,6 +25,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { TreeListPageComponent } from './tree-list-page/tree-list-page.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
 import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
+import { TreeFormComponent } from './tree-form/tree-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
     TreeListPageComponent,
     TimeAgoPipe,
     NewTreePageComponent,
+    TreeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,12 @@ import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
