@@ -20,6 +20,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
@@ -30,10 +31,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="title">All trees</span>
+
+      <ng-content select="[bg-toolbar]"></ng-content>
+
     </mat-toolbar>
 
-    <ng-content></ng-content>
+    <ng-content select="[bg-content]"></ng-content>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

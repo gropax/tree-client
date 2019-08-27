@@ -1,19 +1,23 @@
-<mat-toolbar>
-  <span>Trees</span>
+<nav>
+  <ng-container bg-toolbar>
+    <span class="toolbar-title">All trees</span>
 
-  <!-- This fills the remaining space of the current row -->
-  <span class="filler"></span>
+    <!-- This fills the remaining space of the current row -->
+    <span class="filler"></span>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
-      <mat-icon>add</mat-icon>
-      <span>Create tree</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-  </mat-menu>
-</mat-toolbar>
 
-<tree-list (rowClick)="goTree($event)"></tree-list>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
+        <mat-icon>add</mat-icon>
+        <span>Create tree</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container bg-content>
+    <tree-list (rowClick)="goTree($event)"></tree-list>
+  </ng-container>
+</nav>
