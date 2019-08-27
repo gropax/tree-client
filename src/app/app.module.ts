@@ -21,7 +21,6 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TreeListPageComponent } from './tree-list-page/tree-list-page.component';
 import { TreeListComponent } from './tree-list/tree-list.component';
@@ -35,11 +34,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.component';
 import { TreeViewComponent } from './tree-view/tree-view.component';
 import { MatTreeModule } from '@angular/material/tree';
+import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { MainTopbarComponent } from './layout/main-topbar/main-topbar.component';
+import { ActionTopbarComponent } from './layout/action-topbar/action-topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     TreeListComponent,
     PageNotFoundComponent,
     TreeListPageComponent,
@@ -48,6 +49,9 @@ import { MatTreeModule } from '@angular/material/tree';
     TreeFormComponent,
     TreeDetailPageComponent,
     TreeViewComponent,
+    SidenavComponent,
+    MainTopbarComponent,
+    ActionTopbarComponent,
   ],
   imports: [
     BrowserModule,

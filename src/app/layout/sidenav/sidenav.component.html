@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(appState.isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(appState.isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(appState.isHandset$ | async) === false">
+
+    <mat-toolbar>Tree {{ appState.sidenaveOpen$ | async }}</mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/trees" routerLinkActive="active" (click)="appState.closeSidenav()">
+        <mat-icon mat-list-icon>account_tree</mat-icon>
+        All trees
+      </a>
+      <a mat-list-item routerLink="/settings" routerLinkActive="active" (click)="appState.closeSidenav()">
+        <mat-icon mat-list-icon>settings_application</mat-icon>
+        Settings
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item href="#">
+        <mat-icon mat-list-icon>input</mat-icon>
+        Log in
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="appState.openSidenav()"
+    *ngIf="appState.isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+
+  <span class="toolbar-title">{{ title }}</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="filler"></span>
+
+  <ng-content select="[bgr-first-btn]"></ng-content>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <ng-content select="[bgr-menu]"></ng-content>
+  </mat-menu>
+</mat-toolbar>
+
