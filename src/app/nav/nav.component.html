@@ -3,11 +3,11 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Tree</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/trees" routerLinkActive="active">
         <mat-icon mat-list-icon>account_tree</mat-icon>
-        Trees
+        All trees
       </a>
       <a mat-list-item routerLink="/settings" routerLinkActive="active">
         <mat-icon mat-list-icon>settings_application</mat-icon>
@@ -30,7 +30,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Tree</span>
+      <span class="title">All trees</span>
     </mat-toolbar>
 
     <ng-content></ng-content>
