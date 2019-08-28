@@ -31,7 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TreeDetailPageComponent } from './tree-detail-page/tree-detail-page.component';
+import { TreeViewPageComponent } from './tree-view-page/tree-view-page.component';
 import { TreeViewComponent } from './tree-view/tree-view.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
@@ -47,7 +47,7 @@ import { ActionTopbarComponent } from './layout/action-topbar/action-topbar.comp
     TimeAgoPipe,
     NewTreePageComponent,
     TreeFormComponent,
-    TreeDetailPageComponent,
+    TreeViewPageComponent,
     TreeViewComponent,
     SidenavComponent,
     MainTopbarComponent,

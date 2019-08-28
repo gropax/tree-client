@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent, Tree, Node } from '../services/trees.service';
+import { TreesService, TreeContent } from '../services/trees.service';
 import { switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'tree-detail-page',
-  templateUrl: './tree-detail-page.component.html',
-  styleUrls: ['./tree-detail-page.component.css']
+  selector: 'tree-view-page',
+  templateUrl: './tree-view-page.component.html',
+  styleUrls: ['./tree-view-page.component.css']
 })
-export class TreeDetailPageComponent implements OnInit {
+export class TreeViewPageComponent implements OnInit {
 
   private treeSubject = new BehaviorSubject<TreeContent>(null);
   public tree$ = this.treeSubject.asObservable();

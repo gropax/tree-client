@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TreeDetailPageComponent } from './tree-detail-page.component';
+import { TreeViewPageComponent } from './tree-view-page.component';
 
-describe('TreeDetailPageComponent', () => {
-  let component: TreeDetailPageComponent;
-  let fixture: ComponentFixture<TreeDetailPageComponent>;
+describe('TreeViewPageComponent', () => {
+  let component: TreeViewPageComponent;
+  let fixture: ComponentFixture<TreeViewPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TreeDetailPageComponent ]
+      declarations: [ TreeViewPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TreeDetailPageComponent);
+    fixture = TestBed.createComponent(TreeViewPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
