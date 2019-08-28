@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { TreeListDataSource } from './tree-list-datasource';
-import { Tree, TreesService } from '../services/trees.service';
+import { TreeContent, TreesService } from '../services/trees.service';
 
 @Component({
   selector: 'tree-list',
@@ -15,7 +15,7 @@ export class TreeListComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<Tree>;
+  @ViewChild(MatTable, {static: false}) table: MatTable<TreeContent>;
 
   dataSource: TreeListDataSource;
 

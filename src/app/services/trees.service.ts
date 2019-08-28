@@ -28,13 +28,36 @@ export class Pagination<T> {
   }
 }
 
-export class Tree {
+export class TreeContent {
   constructor(
     public guid: string,
     public name: string,
     public description: string,
     public createdAt: Date,
     public updatedAt: Date) {
+  }
+}
+
+export class Tree extends TreeContent {
+  constructor(
+    public guid: string,
+    public name: string,
+    public description: string,
+    public createdAt: Date,
+    public updatedAt: Date,
+    public children: Node[]) {
+    super(guid, name, description, createdAt, updatedAt);
+  }
+}
+
+export class Node {
+  constructor(
+    public guid: string,
+    public name: string,
+    public description: string,
+    public createdAt: Date,
+    public updatedAt: Date,
+    public children: Node[]) {
   }
 }
 
@@ -45,16 +68,20 @@ export class TreesService {
 
   constructor(protected http: HttpClient) { }
 
-  public getTrees(params: QueryParams) : Observable<Pagination<Tree>> {
-    return this.http.get<Pagination<Tree>>(
+  public getTrees(params: QueryParams) : Observable<Pagination<TreeContent>> {
+    return this.http.get<Pagination<TreeContent>>(
       `api/trees?page=${params.page}&pageSize=${params.pageSize}&sort=${params.sort}&sortDir=${params.sortDir}`);
   }
 
-  public getTree(guid: string) : Observable<Tree> {
-    return this.http.get<Tree>(`api/trees/${guid}`);
+  public getTreeContent(guid: string) : Observable<TreeContent> {
+    return this.http.get<TreeContent>(`api/trees/${guid}?includeNodes=false`);
   }
 
-  public createTree(upsertTree: UpsertTree) : Observable<Tree> {
+  public getTree(guid: string) : Observable<Tree> {
+    return this.http.get<Tree>(`api/trees/${guid}?includeNodes=true`);
+  }
+
+  public createTree(upsertTree: UpsertTree) : Observable<TreeContent> {
     return this.http.post<Tree>('api/trees', upsertTree);
   }
 }

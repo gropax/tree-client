@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { catchError, finalize } from 'rxjs/operators';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { Tree, TreesService, Pagination, QueryParams } from '../services/trees.service';
+import { TreeContent, TreesService, Pagination, QueryParams } from '../services/trees.service';
 
 
 /**
@@ -11,11 +11,11 @@ import { Tree, TreesService, Pagination, QueryParams } from '../services/trees.s
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TreeListDataSource extends DataSource<Tree> {
+export class TreeListDataSource extends DataSource<TreeContent> {
   paginator: MatPaginator;
   sort: MatSort;
 
-  private treesSubject = new BehaviorSubject<Tree[]>([]);
+  private treesSubject = new BehaviorSubject<TreeContent[]>([]);
   private totalSubject = new BehaviorSubject<number>(0);
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
@@ -26,7 +26,7 @@ export class TreeListDataSource extends DataSource<Tree> {
     super();
   }
 
-  connect(): Observable<Tree[]> {
+  connect(): Observable<TreeContent[]> {
     return this.treesSubject.asObservable();
   }
 
@@ -43,7 +43,7 @@ export class TreeListDataSource extends DataSource<Tree> {
     this.treesService
       .getTrees(params)
       .pipe(
-        catchError(() => of(Pagination.empty<Tree>(params))),
+        catchError(() => of(Pagination.empty<TreeContent>(params))),
         finalize(() => this.loadingSubject.next(false)))
       .subscribe(treePage => {
         this.treesSubject.next(treePage.items);

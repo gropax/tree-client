@@ -13,4 +13,7 @@
   </ng-container>
 </bgr-main-topbar>
 
-<tree-view></tree-view>
+<bgr-tree-view
+  (treeClick)="goTreeDetails()"
+  (nodeClick)="goNodeDetails($event)">
+</bgr-tree-view>

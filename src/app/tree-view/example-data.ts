@@ -1,47 +1,18 @@
+import { Tree, Node } from '../services/trees.service';
+
 /** Example file/folder data. */
 export const files = [
-  {
-    name: 'components',
-    type: 'folder',
-    children: [
-      {
-        name: 'src',
-        type: 'folder',
-        children: [
-          {
-            name: 'cdk',
-            type: 'folder',
-            children: [
-              { name: 'package.json', type: 'file' },
-              { name: 'BUILD.bazel', type: 'file' },
-            ]
-          },
-          { name: 'material', type: 'folder' }
-        ]
-      }
-    ]
-  },
-  {
-    name: 'angular',
-    type: 'folder',
-    children: [
-      {
-        name: 'packages',
-        type: 'folder',
-        children: [
-          { name: '.travis.yml', type: 'file' },
-          { name: 'firebase.json', type: 'file' }
-        ]
-      },
-      { name: 'package.json', type: 'file' }
-    ]
-  },
-  {
-    name: 'angularjs',
-    type: 'folder',
-    children: [
-      { name: 'gulpfile.js', type: 'file' },
-      { name: 'README.md', type: 'file' }
-    ]
-  }
+  new Tree('00000000-0000-0000-0000-000000000000', 'My Tree', 'A cool tree.', new Date(), new Date(),
+    [
+      new Node('00000000-0000-0000-0000-000000000000', 'Child 1', 'A cool node.', new Date(), new Date(),
+        [
+          new Node('00000000-0000-0000-0000-000000000000', 'Child A', 'A cool node.', new Date(), new Date(), []),
+          new Node('00000000-0000-0000-0000-000000000000', 'Child B', 'A cool node.', new Date(), new Date(), []),
+        ]),
+      new Node('00000000-0000-0000-0000-000000000000', 'Child 2', 'A cool node.', new Date(), new Date(),
+        [
+          new Node('00000000-0000-0000-0000-000000000000', 'Child C', 'A cool node.', new Date(), new Date(), []),
+          new Node('00000000-0000-0000-0000-000000000000', 'Child D', 'A cool node.', new Date(), new Date(), []),
+        ]),
+    ]),
 ];
