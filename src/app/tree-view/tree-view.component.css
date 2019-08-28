@@ -11,3 +11,7 @@ mat-tree-node {
 mat-tree-node:hover {
   background: #f5f5f5;
 }
+
+mat-tree-node > button {
+  margin-left: 4px;
+}

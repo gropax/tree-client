@@ -22,9 +22,7 @@ export class SidenavComponent implements OnInit {
     combineLatest(
       this.appState.isHandset$,
       this.appState.sidenavOpen$
-    ).subscribe(([isHandset, sidenavOpen]) => {
-      console.log(`isHandset = [${isHandset}], sidenavOpen = [${sidenavOpen}]`);
-      isHandset && !sidenavOpen ? this.drawer.close() : this.drawer.open();
-    });
+    ).subscribe(([isHandset, sidenavOpen]) =>
+      isHandset && !sidenavOpen ? this.drawer.close() : this.drawer.open());
   }
 }
