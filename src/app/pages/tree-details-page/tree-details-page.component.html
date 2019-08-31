@@ -13,7 +13,7 @@
       <mat-icon class="example-tab-icon">subject</mat-icon>
       Content
     </ng-template>
-    Content
+    <bgr-resource-content [content]="(tree$ | async)?.description"></bgr-resource-content>
   </mat-tab>
 
   <mat-tab>
