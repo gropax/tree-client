@@ -31,6 +31,7 @@ export class Pagination<T> {
 export class TreeContent {
   constructor(
     public guid: string,
+    public type: string,
     public name: string,
     public description: string,
     public createdAt: Date,
@@ -41,18 +42,20 @@ export class TreeContent {
 export class Tree extends TreeContent {
   constructor(
     public guid: string,
+    public type: string,
     public name: string,
     public description: string,
     public createdAt: Date,
     public updatedAt: Date,
     public children: Node[]) {
-    super(guid, name, description, createdAt, updatedAt);
+    super(guid, type, name, description, createdAt, updatedAt);
   }
 }
 
 export class Node {
   constructor(
     public guid: string,
+    public type: string,
     public name: string,
     public description: string,
     public createdAt: Date,
