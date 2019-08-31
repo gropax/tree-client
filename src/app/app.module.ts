@@ -15,6 +15,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTreeModule } from '@angular/material/tree';
+import { TreeDetailsPageComponent } from './pages/tree-details-page/tree-details-page.component';
+
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -35,14 +43,7 @@ import { TreeListComponent } from './components/tree-list/tree-list.component';
 import { TreeFormComponent } from './components/tree-form/tree-form.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatTreeModule } from '@angular/material/tree';
-import { TreeDetailsPageComponent } from './pages/tree-details-page/tree-details-page.component';
-import { MetadataComponent } from './components/metadata/metadata.component';
+import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,6 @@ import { MetadataComponent } from './components/metadata/metadata.component';
     MainTopbarComponent,
     ActionTopbarComponent,
     TreeDetailsPageComponent,
-    MetadataComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +84,9 @@ import { MetadataComponent } from './components/metadata/metadata.component';
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatTreeModule
+    MatTreeModule,
+
+    BgrResourceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

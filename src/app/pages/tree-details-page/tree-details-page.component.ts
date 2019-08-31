@@ -24,7 +24,6 @@ export class TreeDetailsPageComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.treesService.getTreeContent(params.get('guid')))
     );
-    //this.tree$.subscribe(tree => this.treeGuid = tree.guid);
   }
 
 }
