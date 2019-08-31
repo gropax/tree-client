@@ -41,6 +41,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTreeModule } from '@angular/material/tree';
+import { TreeDetailsPageComponent } from './pages/tree-details-page/tree-details-page.component';
+import { MetadataComponent } from './components/metadata/metadata.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { MatTreeModule } from '@angular/material/tree';
     SidenavComponent,
     MainTopbarComponent,
     ActionTopbarComponent,
+    TreeDetailsPageComponent,
+    MetadataComponent,
   ],
   imports: [
     BrowserModule,

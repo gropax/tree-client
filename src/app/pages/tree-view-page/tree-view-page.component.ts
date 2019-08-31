@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent } from '../../services/trees.service';
+import { TreesService, TreeContent, Tree } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'tree-view-page',
@@ -11,9 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TreeViewPageComponent implements OnInit {
 
-  private treeSubject = new BehaviorSubject<TreeContent>(null);
-  public tree$ = this.treeSubject.asObservable();
-
+  private tree$: Observable<Tree>;
   private treeGuid: string;
 
   constructor(
