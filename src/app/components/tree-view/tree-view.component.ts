@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of as observableOf, Observable } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Tree } from '../services/trees.service';
+import { Tree } from '../../services/trees.service';
 
 export interface INode {
   guid: string;

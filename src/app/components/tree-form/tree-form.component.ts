@@ -1,12 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-
-export class UpsertTree {
-  constructor(
-    public name: string,
-    public description: string) {
-  }
-}
+import { UpsertTree } from '../../services/trees.service';
 
 @Component({
   selector: 'tree-form',

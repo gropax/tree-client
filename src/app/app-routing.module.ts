@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TreeListPageComponent } from './tree-list-page/tree-list-page.component';
-import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
-import { TreeViewPageComponent } from './tree-view-page/tree-view-page.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { TreeListPageComponent } from './pages/tree-list-page/tree-list-page.component';
+import { NewTreePageComponent } from './pages/new-tree-page/new-tree-page.component';
+import { TreeViewPageComponent } from './pages/tree-view-page/tree-view-page.component';
 
 
 const routes: Routes = [

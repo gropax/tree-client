@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { TreeListDataSource } from './tree-list-datasource';
-import { TreeContent, TreesService } from '../services/trees.service';
+import { TreeContent, TreesService } from '../../services/trees.service';
 
 @Component({
   selector: 'tree-list',

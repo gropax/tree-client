@@ -21,22 +21,26 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TreeListPageComponent } from './tree-list-page/tree-list-page.component';
-import { TreeListComponent } from './tree-list/tree-list.component';
-import { NewTreePageComponent } from './new-tree-page/new-tree-page.component';
-import { TreeFormComponent } from './tree-form/tree-form.component';
+
+import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { MainTopbarComponent } from './layout/main-topbar/main-topbar.component';
+import { ActionTopbarComponent } from './layout/action-topbar/action-topbar.component';
+
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { TreeListPageComponent } from './pages/tree-list-page/tree-list-page.component';
+import { TreeViewPageComponent } from './pages/tree-view-page/tree-view-page.component';
+import { NewTreePageComponent } from './pages/new-tree-page/new-tree-page.component';
+
+import { TreeListComponent } from './components/tree-list/tree-list.component';
+import { TreeFormComponent } from './components/tree-form/tree-form.component';
+import { TreeViewComponent } from './components/tree-view/tree-view.component';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TreeViewPageComponent } from './tree-view-page/tree-view-page.component';
-import { TreeViewComponent } from './tree-view/tree-view.component';
 import { MatTreeModule } from '@angular/material/tree';
-import { SidenavComponent } from './layout/sidenav/sidenav.component';
-import { MainTopbarComponent } from './layout/main-topbar/main-topbar.component';
-import { ActionTopbarComponent } from './layout/action-topbar/action-topbar.component';
 
 @NgModule({
   declarations: [

@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { Observable, forkJoin, zip, combineLatest } from 'rxjs';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map, shareReplay, withLatestFrom, filter } from 'rxjs/operators';
-import { Router, NavigationEnd } from '@angular/router';
+import { combineLatest } from 'rxjs';
 import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({

@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UpsertTree } from '../tree-form/tree-form.component';
 
+
+export class UpsertTree {
+  constructor(
+    public name: string,
+    public description: string) {
+  }
+}
 
 export class QueryParams {
   constructor(

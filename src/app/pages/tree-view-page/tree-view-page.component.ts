@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent } from '../services/trees.service';
+import { TreesService, TreeContent } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
@@ -35,6 +35,6 @@ export class TreeViewPageComponent implements OnInit {
   }
 
   goNodeDetails(guid: string) {
-    this.router.navigate(["trees", this.treeGuid, "nodes", guid]);
+    this.router.navigate(["nodes", guid, "details"]);
   }
 }

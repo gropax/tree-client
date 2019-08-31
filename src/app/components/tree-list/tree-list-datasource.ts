@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { catchError, finalize } from 'rxjs/operators';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { TreeContent, TreesService, Pagination, QueryParams } from '../services/trees.service';
+import { TreeContent, TreesService, Pagination, QueryParams } from '../../services/trees.service';
 
 
 /**

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UpsertTree } from '../tree-form/tree-form.component';
-import { TreesService } from '../services/trees.service';
+import { TreesService, UpsertTree } from '../../services/trees.service';
 
 @Component({
   selector: 'new-tree-page',
