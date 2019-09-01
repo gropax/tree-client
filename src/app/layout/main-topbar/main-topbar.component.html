@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
   <button *ngIf="navigation == 'sidenav' && (appState.isHandset$ | async)"
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="appState.openSidenav()">
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="appState.openSidenav()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
 
   <button *ngIf="navigation == 'back'"
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="goBack()">
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="goBack()">
     <mat-icon aria-label="Side nav toggle icon">keyboard_backspace</mat-icon>
   </button>
 
@@ -20,14 +20,25 @@
   <!-- This fills the remaining space of the current row -->
   <span class="filler"></span>
 
-  <ng-content select="[bgr-first-btn]"></ng-content>
+  <button *ngFor="let action of (topbarActions$ | async)"
+    mat-icon-button
+    [matTooltip]="action.name"
+    (click)="action.action()">
+    <mat-icon>{{ action.icon }}</mat-icon>
+  </button>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button *ngIf="(menuActions$ | async)?.length > 0"
+    mat-icon-button
+    [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
 
   <mat-menu #menu="matMenu">
-    <ng-content select="[bgr-menu]"></ng-content>
+    <button *ngFor="let action of (menuActions$ | async)"
+      mat-menu-item
+      (click)="action.action()">
+      <mat-icon>{{ action.icon }}</mat-icon>
+      <span>{{ action.name }}</span>
+    </button>
   </mat-menu>
 </mat-toolbar>
-

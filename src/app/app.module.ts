@@ -44,6 +44,7 @@ import { TreeFormComponent } from './components/tree-form/tree-form.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 
 import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
+import { MatTooltipModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     MatTreeModule,
 

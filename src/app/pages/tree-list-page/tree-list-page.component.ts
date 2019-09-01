@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuAction } from '../../layout/main-topbar/main-topbar.component';
 
 @Component({
   selector: 'app-tree-list-page',
@@ -8,7 +9,13 @@ import { Router } from '@angular/router';
 })
 export class TreeListPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  private actions: MenuAction[];
+
+  constructor(private router: Router) {
+    this.actions = [
+      new MenuAction("New tree", "add", () => router.navigate(['trees', 'new'])),
+    ];
+  }
 
   ngOnInit() {
   }
