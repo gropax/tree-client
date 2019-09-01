@@ -1,27 +1,25 @@
 <form [formGroup]="metadataForm">
-  <mat-card class="box">
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Guid" formControlName="guid" [value]="resource?.guid">
-          </mat-form-field>
-        </div>
+  <div class="content">
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Guid" formControlName="guid" [value]="resource?.guid">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Created at" formControlName="createdAt" [value]="resource?.createdAt">
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Created at" formControlName="createdAt" [value]="resource?.createdAt">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Updated at" formControlName="updatedAt" [value]="resource?.updatedAt">
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Updated at" formControlName="updatedAt" [value]="resource?.updatedAt">
+        </mat-form-field>
       </div>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </form>

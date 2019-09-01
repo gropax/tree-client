@@ -1,20 +1,22 @@
-<bgr-main-topbar [title]="(tree$ | async)?.name">
-  <!--<ng-container bgr-first-btn>
-    <button mat-icon-button routerLink="/trees/new">
-      <mat-icon>add</mat-icon>
-    </button>
-  </ng-container>-->
+<div class="page">
+  <bgr-main-topbar [title]="(tree$ | async)?.name">
+    <!--<ng-container bgr-first-btn>
+      <button mat-icon-button routerLink="/trees/new">
+        <mat-icon>add</mat-icon>
+      </button>
+    </ng-container>-->
 
-  <ng-container bgr-menu>
-    <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
-      <mat-icon>add</mat-icon>
-      <span>Create tree</span>
-    </button>
-  </ng-container>
-</bgr-main-topbar>
+    <ng-container bgr-menu>
+      <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
+        <mat-icon>add</mat-icon>
+        <span>Create tree</span>
+      </button>
+    </ng-container>
+  </bgr-main-topbar>
 
-<bgr-tree-view
-  [tree]="tree$ | async"
-  (treeClick)="goTreeDetails()"
-  (nodeClick)="goNodeDetails($event)">
-</bgr-tree-view>
+  <bgr-tree-view
+    [tree]="tree$ | async"
+    (treeClick)="goTreeDetails()"
+    (nodeClick)="goNodeDetails($event)">
+  </bgr-tree-view>
+</div>

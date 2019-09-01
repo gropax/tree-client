@@ -1,6 +1,8 @@
-<bgr-action-topbar
-  title="New tree"
-  (cancel)="goTreeList()">
-</bgr-action-topbar>
+<div class="page">
+  <bgr-action-topbar
+    title="New tree"
+    (cancel)="goTreeList()">
+  </bgr-action-topbar>
 
-<tree-form (submited)="createTree($event)"></tree-form>
+  <tree-form (submited)="createTree($event)"></tree-form>
+</div>

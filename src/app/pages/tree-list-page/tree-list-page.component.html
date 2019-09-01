@@ -1,10 +1,12 @@
-<bgr-main-topbar title="All trees">
-  <ng-container bgr-menu>
-    <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
-      <mat-icon>add</mat-icon>
-      <span>Create tree</span>
-    </button>
-  </ng-container>
-</bgr-main-topbar>
+<div class="page">
+  <bgr-main-topbar title="All trees">
+    <ng-container bgr-menu>
+      <button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
+        <mat-icon>add</mat-icon>
+        <span>Create tree</span>
+      </button>
+    </ng-container>
+  </bgr-main-topbar>
 
-<tree-list (rowClick)="goTree($event)"></tree-list>
+  <tree-list (rowClick)="goTree($event)"></tree-list>
+</div>

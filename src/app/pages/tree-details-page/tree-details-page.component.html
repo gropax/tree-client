@@ -1,26 +1,28 @@
-<bgr-main-topbar title="Tree details">
-  <ng-container bgr-menu>
-    <!--<button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
-      <mat-icon>add</mat-icon>
-      <span>Create tree</span>
-    </button>-->
-  </ng-container>
-</bgr-main-topbar>
+<div class="page">
+  <bgr-main-topbar title="Tree details">
+    <ng-container bgr-menu>
+      <!--<button mat-menu-item routerLink="/trees/new" routerLinkActive="active">
+        <mat-icon>add</mat-icon>
+        <span>Create tree</span>
+      </button>-->
+    </ng-container>
+  </bgr-main-topbar>
 
-<mat-tab-group backgroundColor="primary">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">subject</mat-icon>
-      Content
-    </ng-template>
-    <bgr-resource-content [content]="(tree$ | async)?.description"></bgr-resource-content>
-  </mat-tab>
+  <mat-tab-group backgroundColor="primary">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">subject</mat-icon>
+        Content
+      </ng-template>
+      <bgr-resource-content [content]="(tree$ | async)?.description"></bgr-resource-content>
+    </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">settings_application</mat-icon>
-      Metadata
-    </ng-template>
-    <bgr-metadata [resource]="tree$ | async"></bgr-metadata>
-  </mat-tab>
-</mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">settings_application</mat-icon>
+        Metadata
+      </ng-template>
+      <bgr-metadata [resource]="tree$ | async"></bgr-metadata>
+    </mat-tab>
+  </mat-tab-group>
+</div>
