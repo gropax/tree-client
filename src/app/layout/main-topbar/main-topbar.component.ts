@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
+
 import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({
@@ -8,7 +10,12 @@ import { ApplicationStateService } from '../../services/application-state.servic
 })
 export class MainTopbarComponent {
 
+  @Input() navigation: string;  // sidebar | back
   @Input() title: string;
 
-  constructor(private appState: ApplicationStateService) { }
+  constructor(private appState: ApplicationStateService, private location: Location) { }
+
+  goBack() {
+    this.location.back();
+  }
 }

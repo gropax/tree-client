@@ -1,11 +1,18 @@
 <mat-toolbar color="primary">
-  <button
+  <button *ngIf="navigation == 'sidenav' && (appState.isHandset$ | async)"
     type="button"
     aria-label="Toggle sidenav"
     mat-icon-button
-    (click)="appState.openSidenav()"
-    *ngIf="appState.isHandset$ | async">
+    (click)="appState.openSidenav()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+
+  <button *ngIf="navigation == 'back'"
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="goBack()">
+    <mat-icon aria-label="Side nav toggle icon">keyboard_backspace</mat-icon>
   </button>
 
   <span class="toolbar-title">{{ title }}</span>
