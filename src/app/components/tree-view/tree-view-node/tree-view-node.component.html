@@ -1,5 +1,5 @@
 <mat-tree-node matTreeNodePadding
-  (click)="nodeClick()">
+  (click)="click.emit(node)">
 
   <button *ngIf="isRoot(node)" mat-icon-button disabled>
     <mat-icon class="type-icon">
@@ -31,9 +31,13 @@
   </button>
 
   <mat-menu #nodeMenu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="new.emit(node)">
       <mat-icon>add</mat-icon>
-      <span>New child node</span>
+      <span>Add child</span>
+    </button>
+    <button mat-menu-item (click)="rename.emit(node)">
+      <mat-icon>edit</mat-icon>
+      <span>Rename</span>
     </button>
   </mat-menu>
 </mat-tree-node>

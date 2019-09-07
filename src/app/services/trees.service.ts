@@ -10,6 +10,14 @@ export class UpsertTree {
   }
 }
 
+export class CreateNode {
+  constructor(
+    public parentGuid: string,
+    public name: string,
+    public description: string = "") {
+  }
+}
+
 export class QueryParams {
   constructor(
     public page: number,
@@ -36,6 +44,18 @@ export class Pagination<T> {
 
 export class TreeContent {
   constructor(
+    public guid: string,
+    public type: string,
+    public name: string,
+    public description: string,
+    public createdAt: Date,
+    public updatedAt: Date) {
+  }
+}
+
+export class NodeContent {
+  constructor(
+    public treeGuid: string,
     public guid: string,
     public type: string,
     public name: string,
@@ -92,5 +112,9 @@ export class TreesService {
 
   public createTree(upsertTree: UpsertTree) : Observable<TreeContent> {
     return this.http.post<Tree>('api/trees', upsertTree);
+  }
+
+  public createNode(treeGuid: string, createNode: CreateNode) : Observable<NodeContent> {
+    return this.http.post<NodeContent>(`api/trees/${treeGuid}/nodes`, createNode);
   }
 }

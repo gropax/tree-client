@@ -19,7 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTreeModule } from '@angular/material/tree';
 import { TreeDetailsPageComponent } from './pages/tree-details-page/tree-details-page.component';
 
@@ -46,24 +47,9 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
 import { MatTooltipModule } from '@angular/material';
 import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tree-view-node.component';
+import { NewNodeDialogComponent } from './components/new-node-dialog/new-node-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TreeListComponent,
-    PageNotFoundComponent,
-    TreeListPageComponent,
-    TimeAgoPipe,
-    NewTreePageComponent,
-    TreeFormComponent,
-    TreeViewPageComponent,
-    TreeViewComponent,
-    SidenavComponent,
-    MainTopbarComponent,
-    ActionTopbarComponent,
-    TreeDetailsPageComponent,
-    TreeViewNodeComponent,
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -86,13 +72,33 @@ import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tre
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
+    MatDialogModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    FormsModule,
     MatTreeModule,
 
     BgrResourceModule,
   ],
+  declarations: [
+    AppComponent,
+    TreeListComponent,
+    PageNotFoundComponent,
+    TreeListPageComponent,
+    TimeAgoPipe,
+    NewTreePageComponent,
+    TreeFormComponent,
+    TreeViewPageComponent,
+    TreeViewComponent,
+    SidenavComponent,
+    MainTopbarComponent,
+    ActionTopbarComponent,
+    TreeDetailsPageComponent,
+    TreeViewNodeComponent,
+    NewNodeDialogComponent,
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewNodeDialogComponent],
 })
 export class AppModule { }

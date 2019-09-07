@@ -13,14 +13,12 @@ export class TreeViewNodeComponent implements OnInit {
   @Input() node: IFlatTreeNode;
 
   @Output() click = new EventEmitter<IFlatTreeNode>();
+  @Output() new = new EventEmitter<IFlatTreeNode>();
+  @Output() rename = new EventEmitter<IFlatTreeNode>();
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  nodeClick() {
-    this.click.emit(this.node);
   }
 
   menuClick(event) {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent, Tree } from '../../services/trees.service';
+import { TreesService, TreeContent, Tree, CreateNode } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { NewNodeCommand } from '../../components/tree-view/tree-view.component';
 
 @Component({
   selector: 'tree-view-page',
@@ -34,5 +35,9 @@ export class TreeViewPageComponent implements OnInit {
 
   goNodeDetails(guid: string) {
     this.router.navigate(["nodes", guid, "details"]);
+  }
+
+  createNewNode(cmd: NewNodeCommand) {
+    this.treesService.createNode(this.treeGuid, new CreateNode(cmd.parentId, cmd.name));
   }
 }

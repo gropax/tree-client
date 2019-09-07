@@ -7,6 +7,7 @@
   <bgr-tree-view
     [tree]="tree$ | async"
     (treeClick)="goTreeDetails()"
-    (nodeClick)="goNodeDetails($event)">
+    (nodeClick)="goNodeDetails($event)"
+    (newNode)="createNewNode($event)">
   </bgr-tree-view>
 </div>

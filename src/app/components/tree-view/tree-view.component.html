@@ -1,9 +1,9 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-
   <bgr-tree-view-node *matTreeNodeDef="let node;"
     [treeControl]="treeControl"
     [node]="node"
-    (click)="nodeClicked($event)">
+    (click)="nodeClicked($event)"
+    (rename)="renameNode($event)"
+    (new)="openNewDialog($event)">
   </bgr-tree-view-node>
-
 </mat-tree>

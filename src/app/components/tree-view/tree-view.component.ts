@@ -3,6 +3,8 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { of as observableOf, Observable } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Tree } from '../../services/trees.service';
+import { MatDialog } from '@angular/material';
+import { NewNodeDialogComponent } from '../new-node-dialog/new-node-dialog.component';
 
 export interface INode {
   guid: string;
@@ -19,6 +21,19 @@ export interface IFlatTreeNode {
   expandable: boolean;
 }
 
+interface ITreeCommand { }
+
+export class NewNodeCommand implements ITreeCommand {
+  constructor(
+    public parentId: string,
+    public name: string) {
+  }
+}
+
+class RenameNodeCommand implements ITreeCommand {
+  constructor(public id: string) { }
+}
+
 @Component({
   selector: 'bgr-tree-view',
   templateUrl: './tree-view.component.html',
@@ -32,6 +47,8 @@ export class TreeViewComponent implements OnInit {
   @Output() treeClick = new EventEmitter();
   @Output() nodeClick = new EventEmitter<string>();
 
+  @Output() newNode = new EventEmitter<NewNodeCommand>();
+
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<IFlatTreeNode>;
 
@@ -41,7 +58,8 @@ export class TreeViewComponent implements OnInit {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<INode, IFlatTreeNode>;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
+
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -84,6 +102,20 @@ export class TreeViewComponent implements OnInit {
       this.treeClick.emit(node.guid);
     else
       this.nodeClick.emit(node.guid);
+  }
+
+  openNewDialog(parentNode: IFlatTreeNode) {
+    const dialogRef = this.dialog.open(NewNodeDialogComponent, { });
+
+    dialogRef.afterClosed().subscribe(name => {
+      this.newNode.emit(new NewNodeCommand(
+        parentNode.type == 'tree' ? null : parentNode.guid,
+        name));
+    });
+  }
+
+  renameNode(node: IFlatTreeNode) {
+    console.log(`Rename node [${node.guid}]`);
   }
 
   /** Get the level of the node */
