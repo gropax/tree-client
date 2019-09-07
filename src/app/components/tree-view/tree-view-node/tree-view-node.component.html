@@ -1,0 +1,39 @@
+<mat-tree-node matTreeNodePadding
+  (click)="nodeClick()">
+
+  <button *ngIf="isRoot(node)" mat-icon-button disabled>
+    <mat-icon class="type-icon">
+      account_tree
+    </mat-icon>
+  </button>
+
+  <button *ngIf="!isRoot(node) && hasChild(node)" mat-icon-button matTreeNodeToggle>
+    <mat-icon class="mat-icon-rtl-mirror">
+      {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+    </mat-icon>
+  </button>
+
+  <button *ngIf="!hasChild(node)" mat-icon-button disabled>
+    <mat-icon class="type-icon">
+      stop
+    </mat-icon>
+  </button>
+
+  {{node.name}}
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="filler"></span>
+
+  <button mat-icon-button
+    [matMenuTriggerFor]="nodeMenu"
+    (click)="menuClick($event)">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #nodeMenu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>add</mat-icon>
+      <span>New child node</span>
+    </button>
+  </mat-menu>
+</mat-tree-node>

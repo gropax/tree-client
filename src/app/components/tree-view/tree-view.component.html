@@ -1,32 +1,9 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node *matTreeNodeDef="let node;" matTreeNodeToggle matTreeNodePadding
-    (click)="nodeClick.emit(node.guid)">
-    <button mat-icon-button disabled>
-      <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-        stop
-      </mat-icon>
-    </button>
-    {{node.name}}
-  </mat-tree-node>
 
-  <mat-tree-node *matTreeNodeDef="let node; when: isRoot" matTreeNodePadding
-    (click)="treeClick.emit()">
-    <button mat-icon-button>
-      <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
-        account_tree
-      </mat-icon>
-    </button>
-    {{node.name}}
-  </mat-tree-node>
+  <bgr-tree-view-node *matTreeNodeDef="let node;"
+    [treeControl]="treeControl"
+    [node]="node"
+    (click)="nodeClicked($event)">
+  </bgr-tree-view-node>
 
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-    (click)="nodeClick.emit(node.guid)">
-    <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'toggle ' + node.name">
-      <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-      </mat-icon>
-    </button>
-    {{node.name}}
-  </mat-tree-node>
 </mat-tree>

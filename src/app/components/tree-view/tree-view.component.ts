@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { of as observableOf, Observable } from 'rxjs';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -24,7 +24,7 @@ export interface IFlatTreeNode {
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.css']
 })
-export class TreeViewComponent {
+export class TreeViewComponent implements OnInit {
 
   //@Input() tree: Observable<Tree>;
   @Input() tree: Tree;
@@ -51,12 +51,13 @@ export class TreeViewComponent {
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-    this.setDataSource(this.tree);
-    //this.tree.subscribe(tree => this.dataSource.data = [tree]);
-
     // Force expansion of the root node.
     this.dataSource._flattenedData.asObservable().subscribe(
       data => this.treeControl.expand(data[0]));
+  }
+
+  ngOnInit() {
+    this.setDataSource(this.tree);
   }
 
   ngOnChanges() {
@@ -78,12 +79,11 @@ export class TreeViewComponent {
     };
   }
 
-  isRoot(index: number, node: IFlatTreeNode) {
-    return node.type == 'tree';
-  }
-
-  isChild(index: number, node: IFlatTreeNode) {
-    return node.type == 'tree:node';
+  nodeClicked(node: IFlatTreeNode) {
+    if (node.type == 'tree')  // @fixme
+      this.treeClick.emit(node.guid);
+    else
+      this.nodeClick.emit(node.guid);
   }
 
   /** Get the level of the node */
@@ -93,11 +93,6 @@ export class TreeViewComponent {
 
   /** Get whether the node is expanded or not. */
   isExpandable(node: IFlatTreeNode) {
-    return node.expandable;
-  }
-
-  /** Get whether the node has children or not. */
-  hasChild(index: number, node: IFlatTreeNode) {
     return node.expandable;
   }
 

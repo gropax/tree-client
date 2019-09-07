@@ -45,6 +45,7 @@ import { TreeViewComponent } from './components/tree-view/tree-view.component';
 
 import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
 import { MatTooltipModule } from '@angular/material';
+import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tree-view-node.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { MatTooltipModule } from '@angular/material';
     MainTopbarComponent,
     ActionTopbarComponent,
     TreeDetailsPageComponent,
+    TreeViewNodeComponent,
   ],
   imports: [
     BrowserModule,
