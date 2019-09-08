@@ -5,6 +5,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { Tree } from '../../services/trees.service';
 import { MatDialog } from '@angular/material';
 import { NewNodeDialogComponent } from '../new-node-dialog/new-node-dialog.component';
+import { RenameNodeDialogComponent } from '../rename-node-dialog/rename-node-dialog.component';
 
 export interface INode {
   guid: string;
@@ -30,8 +31,11 @@ export class NewNodeCommand implements ITreeCommand {
   }
 }
 
-class RenameNodeCommand implements ITreeCommand {
-  constructor(public id: string) { }
+export class RenameNodeCommand implements ITreeCommand {
+  constructor(
+    public guid: string,
+    public name: string) {
+  }
 }
 
 @Component({
@@ -47,6 +51,7 @@ export class TreeViewComponent implements OnInit {
   @Output() nodeClick = new EventEmitter<string>();
 
   @Output() newNode = new EventEmitter<NewNodeCommand>();
+  @Output() renameNode = new EventEmitter<RenameNodeCommand>();
 
   treeControl: FlatTreeControl<IFlatTreeNode>;
   treeFlattener: MatTreeFlattener<INode, IFlatTreeNode>;
@@ -96,8 +101,15 @@ export class TreeViewComponent implements OnInit {
     });
   }
 
-  renameNode(node: IFlatTreeNode) {
-    console.log(`Rename node [${node.guid}]`);
+  openRenameDialog(node: IFlatTreeNode) {
+    const dialogRef = this.dialog.open(RenameNodeDialogComponent, {
+      data: { name: node.name },
+    });
+
+    dialogRef.afterClosed().subscribe(name => {
+      if (name !== undefined)
+        this.renameNode.emit(new RenameNodeCommand(node.guid, name));
+    });
   }
 
   /** Transform the data to something the tree can read. */

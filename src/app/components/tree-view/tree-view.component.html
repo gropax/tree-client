@@ -3,7 +3,7 @@
     [treeControl]="treeControl"
     [node]="node"
     (click)="nodeClicked($event)"
-    (rename)="renameNode($event)"
+    (rename)="openRenameDialog($event)"
     (new)="openNewDialog($event)">
   </bgr-tree-view-node>
 </mat-tree>

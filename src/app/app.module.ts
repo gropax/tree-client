@@ -48,6 +48,7 @@ import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
 import { MatTooltipModule } from '@angular/material';
 import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tree-view-node.component';
 import { NewNodeDialogComponent } from './components/new-node-dialog/new-node-dialog.component';
+import { RenameNodeDialogComponent } from './components/rename-node-dialog/rename-node-dialog.component';
 
 @NgModule({
   imports: [
@@ -96,9 +97,13 @@ import { NewNodeDialogComponent } from './components/new-node-dialog/new-node-di
     TreeDetailsPageComponent,
     TreeViewNodeComponent,
     NewNodeDialogComponent,
+    RenameNodeDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NewNodeDialogComponent],
+  entryComponents: [
+    NewNodeDialogComponent,
+    RenameNodeDialogComponent,
+  ],
 })
 export class AppModule { }

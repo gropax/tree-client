@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Add child</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="renameNodeForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" cdkFocusInitial>
+      <mat-error *ngIf="renameNodeForm.controls['name'].hasError('different')">
+        Name must be <strong>different</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button class="mat-primary" [disabled]="!renameNodeForm.valid" (click)="onSubmit()">Create</button>
+</div>
+

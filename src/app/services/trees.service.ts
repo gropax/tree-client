@@ -18,6 +18,13 @@ export class CreateNode {
   }
 }
 
+export class UpdateNode {
+  constructor(
+    public name: string,
+    public description: string = "") {
+  }
+}
+
 export class QueryParams {
   constructor(
     public page: number,
@@ -116,5 +123,9 @@ export class TreesService {
 
   public createNode(treeGuid: string, createNode: CreateNode) : Observable<NodeContent> {
     return this.http.post<NodeContent>(`api/trees/${treeGuid}/nodes`, createNode);
+  }
+
+  public updateNode(guid: string, updateNode: UpdateNode) : Observable<NodeContent> {
+    return this.http.put<NodeContent>(`api/trees/nodes/${guid}`, updateNode);
   }
 }
