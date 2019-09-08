@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { TreesService, TreeContent, Tree, CreateNode } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { NewNodeCommand } from '../../components/tree-view/tree-view.component';
 
 @Component({
@@ -12,6 +12,9 @@ import { NewNodeCommand } from '../../components/tree-view/tree-view.component';
 })
 export class TreeViewPageComponent implements OnInit {
 
+  private treeUpdateSubject = new BehaviorSubject<string>(null);
+  private treeUpdate$ = this.treeUpdateSubject.asObservable();
+
   private tree$: Observable<Tree>;
   private treeGuid: string;
 
@@ -19,14 +22,19 @@ export class TreeViewPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private treesService: TreesService,
-  ) { }
+  ) {
+    this.route.paramMap.subscribe((params: ParamMap) =>
+      this.treeUpdateSubject.next(params.get('guid')));
+
+    this.tree$ = this.treeUpdate$.pipe(
+      switchMap(guid => this.treesService.getTree(guid)));
+
+    this.tree$.subscribe(tree => {
+      this.treeGuid = tree.guid
+    });
+  }
 
   ngOnInit() {
-    this.tree$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.treesService.getTree(params.get('guid')))
-    );
-    this.tree$.subscribe(tree => this.treeGuid = tree.guid);
   }
 
   goTreeDetails() {
@@ -38,6 +46,7 @@ export class TreeViewPageComponent implements OnInit {
   }
 
   createNewNode(cmd: NewNodeCommand) {
-    this.treesService.createNode(this.treeGuid, new CreateNode(cmd.parentId, cmd.name));
+    this.treesService.createNode(this.treeGuid, new CreateNode(cmd.parentId, cmd.name))
+      .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
   }
 }

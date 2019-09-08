@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bgr-new-node-dialog',
@@ -8,13 +9,21 @@ import { MatDialogRef } from '@angular/material';
 })
 export class NewNodeDialogComponent {
 
-  name: string;
+  newNodeForm = this.fb.group({
+    name: [null, Validators.required],
+  });
 
-  constructor(public dialogRef: MatDialogRef<NewNodeDialogComponent>) {
+  constructor(
+    public fb: FormBuilder,
+    public dialogRef: MatDialogRef<NewNodeDialogComponent>) {
   }
 
   onCancel(): void {
     this.dialogRef.close();
   }
 
+  onSubmit() {
+    if (this.newNodeForm.valid)
+      this.dialogRef.close(this.newNodeForm.value.name);
+  }
 }

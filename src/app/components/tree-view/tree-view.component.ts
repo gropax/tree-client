@@ -41,21 +41,15 @@ class RenameNodeCommand implements ITreeCommand {
 })
 export class TreeViewComponent implements OnInit {
 
-  //@Input() tree: Observable<Tree>;
-  @Input() tree: Tree;
+  @Input() tree: Observable<Tree>;
 
   @Output() treeClick = new EventEmitter();
   @Output() nodeClick = new EventEmitter<string>();
 
   @Output() newNode = new EventEmitter<NewNodeCommand>();
 
-  /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<IFlatTreeNode>;
-
-  /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
   treeFlattener: MatTreeFlattener<INode, IFlatTreeNode>;
-
-  /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<INode, IFlatTreeNode>;
 
   constructor(public dialog: MatDialog) {
@@ -70,31 +64,19 @@ export class TreeViewComponent implements OnInit {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
     // Force expansion of the root node.
-    this.dataSource._flattenedData.asObservable().subscribe(
-      data => this.treeControl.expand(data[0]));
+    //this.dataSource._flattenedData.asObservable().subscribe(
+    //  data => this.treeControl.expand(data[0]));
   }
 
   ngOnInit() {
-    this.setDataSource(this.tree);
-  }
-
-  ngOnChanges() {
-    this.setDataSource(this.tree);
+    this.tree.subscribe(tree => {
+      this.setDataSource(tree); 
+      this.treeControl.expandAll();
+    });
   }
 
   setDataSource(tree: Tree) {
       this.dataSource.data = !!tree ? [tree] : [];
-  }
-
-  /** Transform the data to something the tree can read. */
-  transformer(node: INode, level: number) {
-    return {
-      guid: node.guid,
-      name: node.name,
-      type: node.type,
-      level: level,
-      expandable: node == null ? false : node.children.length > 0,
-    };
   }
 
   nodeClicked(node: IFlatTreeNode) {
@@ -106,16 +88,27 @@ export class TreeViewComponent implements OnInit {
 
   openNewDialog(parentNode: IFlatTreeNode) {
     const dialogRef = this.dialog.open(NewNodeDialogComponent, { });
+    var parentId = parentNode.type == 'tree' ? null : parentNode.guid;
 
     dialogRef.afterClosed().subscribe(name => {
-      this.newNode.emit(new NewNodeCommand(
-        parentNode.type == 'tree' ? null : parentNode.guid,
-        name));
+      if (name !== undefined)
+        this.newNode.emit(new NewNodeCommand(parentId, name));
     });
   }
 
   renameNode(node: IFlatTreeNode) {
     console.log(`Rename node [${node.guid}]`);
+  }
+
+  /** Transform the data to something the tree can read. */
+  transformer(node: INode, level: number) {
+    return {
+      guid: node.guid,
+      name: node.name,
+      type: node.type,
+      level: level,
+      expandable: node == null ? false : node.children.length > 0,
+    };
   }
 
   /** Get the level of the node */

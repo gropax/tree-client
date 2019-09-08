@@ -5,7 +5,7 @@
   </bgr-main-topbar>
 
   <bgr-tree-view
-    [tree]="tree$ | async"
+    [tree]="tree$"
     (treeClick)="goTreeDetails()"
     (nodeClick)="goNodeDetails($event)"
     (newNode)="createNewNode($event)">
