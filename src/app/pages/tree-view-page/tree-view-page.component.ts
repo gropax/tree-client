@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent, Tree, CreateNode, UpdateNode } from '../../services/trees.service';
+import { TreesService, TreeContent, Tree, CreateNode, UpdateNode, DeleteNodes } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { NewNodeCommand, RenameNodeCommand } from '../../components/tree-view/tree-view.component';
@@ -53,6 +53,11 @@ export class TreeViewPageComponent implements OnInit {
   renameNode(cmd: RenameNodeCommand) {
     var update = new UpdateNode(cmd.name);
     this.treesService.updateNode(cmd.guid, update)
+      .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
+  }
+
+  deleteNode(guid: string) {
+    this.treesService.deleteNode(this.treeGuid, new DeleteNodes([guid], true))
       .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
   }
 }

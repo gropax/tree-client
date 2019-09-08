@@ -49,6 +49,7 @@ import { MatTooltipModule } from '@angular/material';
 import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tree-view-node.component';
 import { NewNodeDialogComponent } from './components/new-node-dialog/new-node-dialog.component';
 import { RenameNodeDialogComponent } from './components/rename-node-dialog/rename-node-dialog.component';
+import { DeleteNodeDialogComponent } from './components/delete-node-dialog/delete-node-dialog.component';
 
 @NgModule({
   imports: [
@@ -98,12 +99,14 @@ import { RenameNodeDialogComponent } from './components/rename-node-dialog/renam
     TreeViewNodeComponent,
     NewNodeDialogComponent,
     RenameNodeDialogComponent,
+    DeleteNodeDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     NewNodeDialogComponent,
     RenameNodeDialogComponent,
+    DeleteNodeDialogComponent,
   ],
 })
 export class AppModule { }

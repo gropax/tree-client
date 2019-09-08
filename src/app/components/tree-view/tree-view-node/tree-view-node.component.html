@@ -39,5 +39,9 @@
       <mat-icon>edit</mat-icon>
       <span>Rename</span>
     </button>
+    <button *ngIf="!isRoot(node)" mat-menu-item (click)="delete.emit(node)">
+      <mat-icon>delete_forever</mat-icon>
+      <span>Delete</span>
+    </button>
   </mat-menu>
 </mat-tree-node>

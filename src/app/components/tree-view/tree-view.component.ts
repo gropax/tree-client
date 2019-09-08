@@ -6,6 +6,7 @@ import { Tree } from '../../services/trees.service';
 import { MatDialog } from '@angular/material';
 import { NewNodeDialogComponent } from '../new-node-dialog/new-node-dialog.component';
 import { RenameNodeDialogComponent } from '../rename-node-dialog/rename-node-dialog.component';
+import { DeleteNodeDialogComponent } from '../delete-node-dialog/delete-node-dialog.component';
 
 export interface INode {
   guid: string;
@@ -52,6 +53,7 @@ export class TreeViewComponent implements OnInit {
 
   @Output() newNode = new EventEmitter<NewNodeCommand>();
   @Output() renameNode = new EventEmitter<RenameNodeCommand>();
+  @Output() deleteNode = new EventEmitter<string>();
 
   treeControl: FlatTreeControl<IFlatTreeNode>;
   treeFlattener: MatTreeFlattener<INode, IFlatTreeNode>;
@@ -109,6 +111,19 @@ export class TreeViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe(name => {
       if (name !== undefined)
         this.renameNode.emit(new RenameNodeCommand(node.guid, name));
+    });
+  }
+
+  openDeleteDialog(node: IFlatTreeNode) {
+    let descendents = this.treeControl.getDescendants(node).length;
+
+    const dialogRef = this.dialog.open(DeleteNodeDialogComponent, {
+      data: { name: node.name, descendents: descendents },
+    });
+
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed)
+        this.deleteNode.emit(node.guid);
     });
   }
 

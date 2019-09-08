@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Delete node</h1>
+
+<div mat-dialog-content>
+  <p>Do you really want to delete node <strong>{{ name }}</strong>
+    <span *ngIf="descendents > 0"> and its <strong>{{ descendents }} descendents</strong></span>
+    ?</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()" cdkFocus>Cancel</button>
+  <button mat-button class="mat-warn" (click)="onConfirm()">
+    <span *ngIf="descendents == 0">Delete node</span>
+    <span *ngIf="descendents > 0">Delete {{ descendents + 1 }} nodes</span>
+  </button>
+</div>

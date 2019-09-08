@@ -18,6 +18,13 @@ export class CreateNode {
   }
 }
 
+export class DeleteNodes {
+  constructor(
+    public guids: string[],
+    public recursive: boolean = true) {
+  }
+}
+
 export class UpdateNode {
   constructor(
     public name: string,
@@ -127,5 +134,12 @@ export class TreesService {
 
   public updateNode(guid: string, updateNode: UpdateNode) : Observable<NodeContent> {
     return this.http.put<NodeContent>(`api/trees/nodes/${guid}`, updateNode);
+  }
+
+  public deleteNode(treeGuid: string, deleteNodes: DeleteNodes) : Observable<NodeContent> {
+    console.log(deleteNodes)
+    return this.http.request<NodeContent>('DELETE', `api/trees/${treeGuid}/nodes`, {
+      body: deleteNodes,
+    });
   }
 }

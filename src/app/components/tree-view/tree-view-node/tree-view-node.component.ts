@@ -15,6 +15,7 @@ export class TreeViewNodeComponent implements OnInit {
   @Output() click = new EventEmitter<IFlatTreeNode>();
   @Output() new = new EventEmitter<IFlatTreeNode>();
   @Output() rename = new EventEmitter<IFlatTreeNode>();
+  @Output() delete = new EventEmitter<IFlatTreeNode>();
 
   constructor() { }
 
