@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ApplicationStateService } from '../../services/application-state.service';
 import { BehaviorSubject } from 'rxjs';
+import { ApplicationStateService } from '../../bgr-resource/services/application-state.service';
 
 
 export class MenuAction {

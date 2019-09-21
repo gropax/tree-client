@@ -1,0 +1,50 @@
+<mat-toolbar [color]="(topbarService.mode$ | async) == TopbarMode.Navigation ? 'primary' : null">
+  <!--<button *ngIf="navigation == 'sidenav' && (appState.isHandset$ | async)"-->
+  <button *ngIf="topbarService.sidenavButton$ | async"
+          type="button"
+          mat-icon-button
+          (click)="topbarService.mainButtonClicked()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+
+  <button *ngIf="topbarService.backButton$ | async"
+          type="button"
+          mat-icon-button
+          (click)="topbarService.mainButtonClicked()">
+    <mat-icon aria-label="Side nav toggle icon">keyboard_backspace</mat-icon>
+  </button>
+
+  <button *ngIf="topbarService.cancelButton$ | async"
+          type="button"
+          mat-icon-button
+          (click)="topbarService.mainButtonClicked()">
+    <mat-icon aria-label="Side nav toggle icon">cancel</mat-icon>
+  </button>
+
+  <span class="toolbar-title">{{ topbarService.title$ | async }}</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="filler"></span>
+
+  <button *ngFor="let action of (topbarService.topbarActions$ | async)"
+    mat-icon-button
+    [matTooltip]="action.name"
+    (click)="action.action()">
+    <mat-icon>{{ action.icon }}</mat-icon>
+  </button>
+
+  <button *ngIf="(topbarService.menuActions$ | async)?.length > 0"
+    mat-icon-button
+    [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button *ngFor="let action of (topbarService.menuActions$ | async)"
+      mat-menu-item
+      (click)="action.action()">
+      <mat-icon>{{ action.icon }}</mat-icon>
+      <span>{{ action.name }}</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

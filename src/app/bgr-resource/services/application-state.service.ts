@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map, shareReplay, withLatestFrom, filter } from 'rxjs/operators';
-import { Router, NavigationEnd } from '@angular/router';
+import { map, shareReplay, } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

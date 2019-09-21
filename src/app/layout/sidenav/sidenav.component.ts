@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { combineLatest } from 'rxjs';
-import { ApplicationStateService } from '../../services/application-state.service';
+import { ApplicationStateService } from '../../bgr-resource/services/application-state.service';
 
 @Component({
   selector: 'bgr-sidenav',
