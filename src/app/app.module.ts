@@ -45,7 +45,7 @@ import { TreeFormComponent } from './components/tree-form/tree-form.component';
 import { TreeViewComponent } from './components/tree-view/tree-view.component';
 
 import { BgrResourceModule } from './bgr-resource/bgr-resource.module';
-import { MatTooltipModule } from '@angular/material';
+import { MatTooltipModule, MatProgressSpinnerModule } from '@angular/material';
 import { TreeViewNodeComponent } from './components/tree-view/tree-view-node/tree-view-node.component';
 import { NewNodeDialogComponent } from './components/new-node-dialog/new-node-dialog.component';
 import { RenameNodeDialogComponent } from './components/rename-node-dialog/rename-node-dialog.component';
@@ -79,6 +79,7 @@ import { DeleteNodeDialogComponent } from './components/delete-node-dialog/delet
     ReactiveFormsModule,
     FormsModule,
     MatTreeModule,
+    MatProgressSpinnerModule,
 
     BgrResourceModule,
   ],

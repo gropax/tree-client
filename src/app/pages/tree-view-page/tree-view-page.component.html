@@ -5,6 +5,7 @@
   </bgr-main-topbar>
 
   <bgr-tree-view
+    [hidden]="(loading$ | async)"
     [tree]="tree$"
     (treeClick)="goTreeDetails()"
     (nodeClick)="goNodeDetails($event)"
@@ -12,4 +13,11 @@
     (renameNode)="renameNode($event)"
     (deleteNode)="deleteNode($event)">
   </bgr-tree-view>
+
+  <bgr-page-content-spinner [hidden]="!(loading$ | async)">
+  </bgr-page-content-spinner>
+
+  <!--<div class="progress-loader vertical-center" [hidden]="!(loading$ | async)">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+  </div>-->
 </div>
