@@ -15,6 +15,9 @@ export class TreeViewPageComponent implements OnInit {
   private treeUpdateSubject = new BehaviorSubject<string>(null);
   private treeUpdate$ = this.treeUpdateSubject.asObservable();
 
+  private loadingSubject = new BehaviorSubject<boolean>(true);
+  private loading$ = this.loadingSubject.asObservable();
+
   private tree$: Observable<Tree>;
   private treeGuid: string;
 
@@ -31,6 +34,7 @@ export class TreeViewPageComponent implements OnInit {
 
     this.tree$.subscribe(tree => {
       this.treeGuid = tree.guid
+      this.loadingSubject.next(false);
     });
   }
 
@@ -46,17 +50,19 @@ export class TreeViewPageComponent implements OnInit {
   }
 
   createNewNode(cmd: NewNodeCommand) {
+    this.loadingSubject.next(true);
     this.treesService.createNode(this.treeGuid, new CreateNode(cmd.parentId, cmd.name))
       .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
   }
 
   renameNode(cmd: RenameNodeCommand) {
-    var update = new UpdateNode(cmd.name);
-    this.treesService.updateNode(cmd.guid, update)
+    this.loadingSubject.next(true);
+    this.treesService.updateNode(cmd.guid, new UpdateNode(cmd.name))
       .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
   }
 
   deleteNode(guid: string) {
+    this.loadingSubject.next(true);
     this.treesService.deleteNode(this.treeGuid, new DeleteNodes([guid], true))
       .subscribe(() => this.treeUpdateSubject.next(this.treeGuid));
   }
