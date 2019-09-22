@@ -31,7 +31,9 @@ export class TreeDetailsPageComponent implements OnInit {
   }
 
   topbarMainMode() {
+    // Title should already be set
     this.topbarService.setMode(TopbarMode.Navigation);
     this.topbarService.setMainAction(MainActionType.Back);
+    this.topbarService.setActions([]);
   }
 }
