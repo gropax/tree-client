@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuAction } from '../../layout/main-topbar/main-topbar.component';
-import { TopbarService, TopbarMode, MainAction, MainActionType } from '../../bgr-resource/services/topbar.service';
+import { TopbarService, TopbarMode, MainAction, MainActionType, MenuAction } from '../../bgr-resource/services/topbar.service';
 
 @Component({
   selector: 'app-tree-list-page',

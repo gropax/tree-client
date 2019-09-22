@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { TreesService, TreeContent, Tree, CreateNode, UpdateNode, DeleteNodes } from '../../services/trees.service';
+import { TreesService, Tree, CreateNode, UpdateNode, DeleteNodes } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { NewNodeCommand, RenameNodeCommand } from '../../components/tree-view/tree-view.component';
-import { TopbarService, TopbarMode, MainAction, MainActionType } from '../../bgr-resource/services/topbar.service';
-import { MenuAction } from '../../layout/main-topbar/main-topbar.component';
+import { TopbarService, TopbarMode, MainActionType } from '../../bgr-resource/services/topbar.service';
 
 @Component({
   selector: 'tree-view-page',

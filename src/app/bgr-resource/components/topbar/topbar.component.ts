@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { BehaviorSubject, combineLatest } from 'rxjs';
-import { MenuAction } from '../../../layout/main-topbar/main-topbar.component';
-import { TopbarService } from '../../services/topbar.service';
+import { TopbarService, MenuAction } from '../../services/topbar.service';
 import { ApplicationStateService } from '../../services/application-state.service';
 
 @Component({

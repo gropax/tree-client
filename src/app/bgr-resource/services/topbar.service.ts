@@ -78,7 +78,7 @@ export class TopbarService {
       case MainActionType.Sidenav:
         fn = () => this.applicationStateService.openSidenav(); break;
       case MainActionType.Back:
-        fn = () => this.location.back(); break;
+        fn = () => action || this.location.back(); break;
       case MainActionType.Cancel:
         fn = action; break;
       default:

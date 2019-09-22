@@ -32,8 +32,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
-import { MainTopbarComponent } from './layout/main-topbar/main-topbar.component';
-import { ActionTopbarComponent } from './layout/action-topbar/action-topbar.component';
 
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { TreeListPageComponent } from './pages/tree-list-page/tree-list-page.component';
@@ -94,8 +92,6 @@ import { DeleteNodeDialogComponent } from './components/delete-node-dialog/delet
     TreeViewPageComponent,
     TreeViewComponent,
     SidenavComponent,
-    MainTopbarComponent,
-    ActionTopbarComponent,
     TreeDetailsPageComponent,
     TreeViewNodeComponent,
     NewNodeDialogComponent,

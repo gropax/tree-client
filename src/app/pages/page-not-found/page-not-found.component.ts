@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TopbarService } from '../../bgr-resource/services/topbar.service';
 
 @Component({
   selector: 'page-not-found',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private topbarService: TopbarService
+  ) {
+  }
 
   ngOnInit() {
+    this.topbarService.setTitle("Error");
   }
 
 }
