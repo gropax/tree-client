@@ -15,8 +15,13 @@ export class TopbarComponent implements OnInit {
   private topbarActionsSubject = new BehaviorSubject<MenuAction[]>([]);
   private menuActionsSubject = new BehaviorSubject<MenuAction[]>([]);
 
-  public topbarActions$ = this.topbarActionsSubject.asObservable();
-  public menuActions$ = this.menuActionsSubject.asObservable();
+  private topbarActions$ = this.topbarActionsSubject.asObservable();
+  private menuActions$ = this.menuActionsSubject.asObservable();
+
+  private displaySidenavButton$ = combineLatest(
+    this.appState.isHandset$,
+    this.topbarService.isSidenavButton$,
+    (isHandset, isSidenav) => isHandset && isSidenav);
 
   constructor(private appState: ApplicationStateService,
     private topbarService: TopbarService) {

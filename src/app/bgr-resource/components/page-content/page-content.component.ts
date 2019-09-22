@@ -16,7 +16,8 @@ export class PageContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.loading.subscribe(b => this.loadingSubject.next(b));
+    if (this.loading)
+      this.loading.subscribe(b => this.loadingSubject.next(b));
   }
 
 }
