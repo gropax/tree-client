@@ -13,6 +13,7 @@ import { ResourceContentComponent } from './components/resource-content/resource
 import { PageContentSpinnerComponent } from './components/page-content-spinner/page-content-spinner.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { TopbarService } from './services/topbar.service';
+import { PageContentComponent } from './components/page-content/page-content.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { TopbarService } from './services/topbar.service';
     ResourceContentComponent,
     PageContentSpinnerComponent,
     TopbarComponent,
+    PageContentComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { TopbarService } from './services/topbar.service';
     ResourceContentComponent,
     TopbarComponent,
     PageContentSpinnerComponent,
+    PageContentComponent,
   ],
 })
 export class BgrResourceModule { }

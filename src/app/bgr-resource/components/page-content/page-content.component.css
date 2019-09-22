@@ -1,0 +1,12 @@
+.spinner-wrapper {
+  width: 100%;
+  height: calc( 100% - 64px);
+  top: 64px;
+  position: sticky;
+}
+
+.spinner {
+  position: absolute;
+  top: calc(50% - 45px);
+  left: calc(50% - 45px);
+}  

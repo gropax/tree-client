@@ -1,0 +1,8 @@
+<div class="page-content">
+  <div class="spinner-wrapper" *ngIf="loading$ | async; else content">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+</div>
