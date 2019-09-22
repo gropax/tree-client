@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { TreesService, TreeContent, Tree, CreateNode, UpdateNode, DeleteNodes } from '../../services/trees.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { NewNodeCommand, RenameNodeCommand } from '../../components/tree-view/tree-view.component';
+import { TopbarService, TopbarMode, MainButton, MainButtonType } from '../../bgr-resource/services/topbar.service';
+import { MenuAction } from '../../layout/main-topbar/main-topbar.component';
 
 @Component({
   selector: 'tree-view-page',
@@ -24,6 +27,8 @@ export class TreeViewPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
+    private topbarService: TopbarService,
     private treesService: TreesService,
   ) {
     this.route.paramMap.subscribe((params: ParamMap) =>
@@ -33,12 +38,25 @@ export class TreeViewPageComponent implements OnInit {
       switchMap(guid => this.treesService.getTree(guid)));
 
     this.tree$.subscribe(tree => {
+      this.topbarService.setTitle(tree.name);
+
       this.treeGuid = tree.guid
       this.loadingSubject.next(false);
     });
   }
 
   ngOnInit() {
+    this.topbarMainMode();
+  }
+
+  topbarMainMode() {
+    this.topbarService.setMode(TopbarMode.Navigation);
+    this.topbarService.setMainButton(new MainButton(MainButtonType.Back, () => this.goBack()));
+    this.topbarService.setActions([new MenuAction("Add", "add", () => console.log("Add!!!"))]);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   goTreeDetails() {

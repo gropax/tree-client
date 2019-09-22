@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, pipe } from 'rxjs';
 import { ApplicationStateService } from './application-state.service';
+import { map } from 'rxjs/operators';
 
 
 export class MainButton {
@@ -10,7 +11,7 @@ export class MainButton {
   }
 }
 
-enum MainButtonType {
+export enum MainButtonType {
   Sidebar,
   Back,
   Cancel,
@@ -25,7 +26,7 @@ export class MenuAction {
   }
 }
 
-enum TopbarMode {
+export enum TopbarMode {
   Navigation,
   Contextual,
 }
@@ -44,6 +45,19 @@ export class TopbarService {
   public title$ = this.titleSubject.asObservable();
   public mainButton$ = this.mainButtonSubject.asObservable();
   public actions$ = this.actionsSubject.asObservable();
+
+  public isNavigationMode$ = this.mode$.pipe(map(m => m == TopbarMode.Navigation));
+  public isBackButton$ = this.mainButton$.pipe(map(b => b && b.type == MainButtonType.Back));
+  public isSidebarButton$ = this.mainButton$.pipe(map(b => b && b.type == MainButtonType.Sidebar));
+  public isCancelButton$ = this.mainButton$.pipe(map(b => b && b.type == MainButtonType.Cancel));
+
+  public mainButtonAction: Function;
+
+  constructor() {
+    this.mainButton$.subscribe(b => {
+      if (b) this.mainButtonAction = b.action
+    });
+  }
 
   setMode(mode: TopbarMode) {
     this.modeSubject.next(mode);

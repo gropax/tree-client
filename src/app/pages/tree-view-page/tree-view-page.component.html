@@ -1,9 +1,4 @@
-<div class="page">
-  <bgr-main-topbar
-    navigation="back"
-    [title]="(tree$ | async)?.name">
-  </bgr-main-topbar>
-
+<div class="page-content">
   <bgr-tree-view
     [hidden]="(loading$ | async)"
     [tree]="tree$"
@@ -16,8 +11,4 @@
 
   <bgr-page-content-spinner [hidden]="!(loading$ | async)">
   </bgr-page-content-spinner>
-
-  <!--<div class="progress-loader vertical-center" [hidden]="!(loading$ | async)">
-    <mat-spinner style="margin: 0 auto;"></mat-spinner>
-  </div>-->
 </div>

@@ -38,6 +38,7 @@ import { TopbarService } from './services/topbar.service';
   exports: [
     MetadataComponent,
     ResourceContentComponent,
+    TopbarComponent,
     PageContentSpinnerComponent,
   ],
 })

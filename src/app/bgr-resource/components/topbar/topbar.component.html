@@ -1,23 +1,22 @@
-<mat-toolbar [color]="(topbarService.mode$ | async) == TopbarMode.Navigation ? 'primary' : null">
-  <!--<button *ngIf="navigation == 'sidenav' && (appState.isHandset$ | async)"-->
-  <button *ngIf="topbarService.sidenavButton$ | async"
+<mat-toolbar [color]="(topbarService.isNavigationMode$ | async) ? 'primary' : null">
+  <button *ngIf="topbarService.isSidenavButton$ | async"
           type="button"
           mat-icon-button
-          (click)="topbarService.mainButtonClicked()">
+          (click)="topbarService?.mainButtonAction()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
 
-  <button *ngIf="topbarService.backButton$ | async"
+  <button *ngIf="topbarService.isBackButton$ | async"
           type="button"
           mat-icon-button
-          (click)="topbarService.mainButtonClicked()">
+          (click)="topbarService?.mainButtonAction()">
     <mat-icon aria-label="Side nav toggle icon">keyboard_backspace</mat-icon>
   </button>
 
-  <button *ngIf="topbarService.cancelButton$ | async"
+  <button *ngIf="topbarService.isCancelButton$ | async"
           type="button"
           mat-icon-button
-          (click)="topbarService.mainButtonClicked()">
+          (click)="topbarService?.mainButtonAction()">
     <mat-icon aria-label="Side nav toggle icon">cancel</mat-icon>
   </button>
 
@@ -26,21 +25,21 @@
   <!-- This fills the remaining space of the current row -->
   <span class="filler"></span>
 
-  <button *ngFor="let action of (topbarService.topbarActions$ | async)"
+  <button *ngFor="let action of (topbarActions$ | async)"
     mat-icon-button
     [matTooltip]="action.name"
     (click)="action.action()">
     <mat-icon>{{ action.icon }}</mat-icon>
   </button>
 
-  <button *ngIf="(topbarService.menuActions$ | async)?.length > 0"
+  <button *ngIf="(menuActions$ | async)?.length > 0"
     mat-icon-button
     [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
 
   <mat-menu #menu="matMenu">
-    <button *ngFor="let action of (topbarService.menuActions$ | async)"
+    <button *ngFor="let action of (menuActions$ | async)"
       mat-menu-item
       (click)="action.action()">
       <mat-icon>{{ action.icon }}</mat-icon>
