@@ -1,14 +1,17 @@
 <div class="page-content">
-  <bgr-tree-view
-    [hidden]="(loading$ | async)"
-    [tree]="tree$"
-    (treeClick)="goTreeDetails()"
-    (nodeClick)="goNodeDetails($event)"
-    (newNode)="createNewNode($event)"
-    (renameNode)="renameNode($event)"
-    (deleteNode)="deleteNode($event)">
-  </bgr-tree-view>
+  <div class="spinner-wrapper" *ngIf="loading$ | async; else treeView">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
 
-  <bgr-page-content-spinner [hidden]="!(loading$ | async)">
-  </bgr-page-content-spinner>
+  <ng-template #treeView>
+    <bgr-tree-view
+      [hidden]="(loading$ | async)"
+      [tree]="tree$"
+      (treeClick)="goTreeDetails()"
+      (nodeClick)="goNodeDetails($event)"
+      (newNode)="createNewNode($event)"
+      (renameNode)="renameNode($event)"
+      (deleteNode)="deleteNode($event)">
+    </bgr-tree-view>
+  </ng-template>
 </div>
