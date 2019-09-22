@@ -1,9 +1,4 @@
-<div class="page">
-  <bgr-main-topbar
-    navigation="back"
-    title="Tree details">
-  </bgr-main-topbar>
-
+<bgr-page-content>
   <mat-tab-group backgroundColor="primary">
     <mat-tab>
       <ng-template mat-tab-label>
@@ -21,4 +16,4 @@
       <bgr-metadata [resource]="tree$ | async"></bgr-metadata>
     </mat-tab>
   </mat-tab-group>
-</div>
+</bgr-page-content>

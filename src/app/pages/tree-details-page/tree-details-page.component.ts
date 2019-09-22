@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { TreeContent, TreesService } from '../../services/trees.service';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { TopbarMode, MainActionType, TopbarService } from '../../bgr-resource/services/topbar.service';
 
 @Component({
   selector: 'app-tree-details-page',
@@ -15,15 +16,22 @@ export class TreeDetailsPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private topbarService: TopbarService,
     private treesService: TreesService,
   ) { }
 
   ngOnInit() {
+    this.topbarMainMode();
+
     this.tree$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.treesService.getTreeContent(params.get('guid')))
-    );
+        this.treesService.getTreeContent(params.get('guid'))));
+
+    this.tree$.subscribe(t => this.topbarService.setTitle(t.name));
   }
 
+  topbarMainMode() {
+    this.topbarService.setMode(TopbarMode.Navigation);
+    this.topbarService.setMainAction(MainActionType.Back);
+  }
 }
