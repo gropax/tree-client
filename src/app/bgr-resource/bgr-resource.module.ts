@@ -10,7 +10,6 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { MetadataComponent } from './components/metadata/metadata.component';
 import { ResourceContentComponent } from './components/resource-content/resource-content.component';
-import { PageContentSpinnerComponent } from './components/page-content-spinner/page-content-spinner.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { TopbarService } from './services/topbar.service';
 import { PageContentComponent } from './components/page-content/page-content.component';
@@ -20,7 +19,6 @@ import { PageContentComponent } from './components/page-content/page-content.com
   declarations: [
     MetadataComponent,
     ResourceContentComponent,
-    PageContentSpinnerComponent,
     TopbarComponent,
     PageContentComponent,
   ],
@@ -41,7 +39,6 @@ import { PageContentComponent } from './components/page-content/page-content.com
     MetadataComponent,
     ResourceContentComponent,
     TopbarComponent,
-    PageContentSpinnerComponent,
     PageContentComponent,
   ],
 })
